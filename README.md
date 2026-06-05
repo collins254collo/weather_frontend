@@ -234,8 +234,6 @@ This matters for farmers making real decisions — fake or empty data is never s
 |---|---|---|---|
 | `VITE_API_URL` | ❌ | `http://localhost:5000/api` | Backend API base URL |
 
----
-
 ## License
 
 MIT
