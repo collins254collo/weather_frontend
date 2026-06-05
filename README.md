@@ -1,30 +1,54 @@
 #  FarmGuard AI
 
-A web application that helps farmers analyse their land by uploading a farm photo and receiving an AI-powered report on tree count, canopy coverage, tree health, and actionable recommendations.
+> AI-powered farm analysis — upload a photo, get a full agronomic report in seconds.
+
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)
+![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)
+![Express](https://img.shields.io/badge/Express-4-000000?style=flat-square&logo=express)
+![Powered by WeatherAI](https://img.shields.io/badge/Powered%20by-WeatherAI-22c55e?style=flat-square)
 
 ---
 
-## Overview
+## What is FarmGuard AI?
 
-FarmGuard AI connects a React frontend to a Node.js backend, which forwards farm images and metadata to the [WeatherAI Trees & Forestry API](https://weather-ai.co). The API uses computer vision and AI to analyse the image and return a detailed farm report.
+FarmGuard AI lets farmers and agronomists drop a drone or aerial photo of their land and instantly receive a detailed, AI-generated report — covering tree count, canopy coverage, per-acre tree density, health breakdown, and specific recommendations on what needs attention.
 
-### What it does
+No spreadsheets. No guesswork. Upload → Analyse → Act.
 
-- Accepts a farm photo (drag-and-drop or file picker)
-- Collects the farm's location, county, and size in acres
-- Sends the data to the WeatherAI API for analysis
-- Displays results: tree count, canopy cover, trees per acre, tree health breakdown, observations, and recommendations
-- Gracefully handles low-confidence or failed analyses with clear user feedback
+Built on top of the [WeatherAI Trees & Forestry API](https://weather-ai.co), which combines OpenCV computer vision with Gemini AI to deliver accurate, context-aware results.
 
 ---
 
 ## Screenshots
 
-### Upload Form
-![FarmGuard AI upload form showing photo picker, location, county and farm size fields](./src/assets/upload.png)
+| Upload | Results |
+|--------|---------|
+| ![Upload form](./src/assets/upload.png) | ![Analysis results](./src/assets/analysis.png) |
 
-### Analysis Results
-![FarmGuard AI results screen showing farm stats, low confidence warning, and tree health breakdown](./src/assets/analysis.png)
+---
+
+## Features
+
+- **Drag-and-drop image upload** — JPEG, PNG, WebP supported, up to 10 MB
+- **Detailed farm report** — tree count, canopy %, trees/acre, health status per tree
+- **AI observations & recommendations** — powered by Gemini via WeatherAI
+- **Low-confidence detection** — warns users when image quality is insufficient rather than showing misleading data
+- **Metadata support** — pass county, location, farm size, and GPS coordinates for richer AI context
+- **Clean, responsive UI** — works on desktop and mobile
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, TypeScript, Vite |
+| Styling | Plain CSS |
+| Backend | Node.js, Express |
+| HTTP Client | Axios |
+| Image Upload | Multer |
+| AI / CV Engine | WeatherAI Trees & Forestry API (OpenCV + Gemini) |
 
 ---
 
@@ -35,24 +59,24 @@ farmguard-ai/
 ├── frontend/                  # React + TypeScript + Vite
 │   ├── src/
 │   │   ├── API/
-│   │   │   └── farmApi.ts     # API call to backend
-│   │   ├── App.tsx            # Main app component
-│   │   ├── app.css            # All styles
-│   │   └── main.tsx
+│   │   │   └── farmApi.ts     # Typed API wrapper for backend calls
+│   │   ├── App.tsx            # Root component — handles state & flow
+│   │   ├── app.css            # Global styles
+│   │   └── main.tsx           # Entry point
 │   ├── .env                   # VITE_API_URL
 │   └── vite.config.ts
 │
 └── backend/                   # Node.js + Express
     ├── config/
-    │   └── env.js             # Environment variable config
+    │   └── env.js             # Centralised env config with validation
     ├── controllers/
-    │   └── farmController.js  # analyzeFarm, healthCheck
+    │   └── farmController.js  # analyzeFarm handler + healthCheck
     ├── utils/
-    │   └── weatherAiClient.js # Axios instance for WeatherAI
+    │   └── weatherAiClient.js # Axios instance — WeatherAI integration
     ├── routes/
-    │   └── farm.js
-    ├── .env                   # WEATHER_AI_API_KEY, etc.
-    └── server.js
+    │   └── farm.js            # Route definitions
+    ├── .env                   # API keys & server config
+    └── server.js              # Express app entry point
 ```
 
 ---
@@ -61,60 +85,69 @@ farmguard-ai/
 
 ### Prerequisites
 
-- Node.js 18+
-- A WeatherAI API key — sign up at [weather-ai.co](https://weather-ai.co)
+- **Node.js 18+**
+- A **WeatherAI API key** — get one free at [weather-ai.co](https://weather-ai.co)
 
 ---
 
-### Backend Setup
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/farmguard-ai.git
+cd farmguard-ai
+```
+
+---
+
+### 2. Backend setup
 
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file:
+Create a `backend/.env` file:
 
 ```env
 PORT=5000
 WEATHER_AI_API_KEY=your_api_key_here
-WEATHER_AI_BASE_URL=https://weather-ai.co
-WEATHER_AI_TREES_ENDPOINT=/trees/analyze
+WEATHER_AI_BASE_URL=https://api.weather-ai.co
+WEATHER_AI_TREES_ENDPOINT=/v1/trees/analyze
 ALLOWED_ORIGINS=http://localhost:3000
 MAX_FILE_SIZE_MB=10
 ALLOWED_MIME_TYPES=image/jpeg,image/png,image/webp,image/gif
 ```
 
-Start the server:
+Start the backend:
 
 ```bash
 npm run dev
 ```
 
-The backend will be running at `http://localhost:5000`.
+Backend runs at `http://localhost:5000`.
 
 ---
 
-### Frontend Setup
+### 3. Frontend setup
 
 ```bash
-cd frontend
+cd ../frontend
 npm install
 ```
 
-Create a `.env` file:
+Create a `frontend/.env` file:
 
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-Start the dev server:
+Start the frontend:
 
 ```bash
 npm run dev
 ```
 
-The app will be running at `http://localhost:3000`.
+App runs at `http://localhost:3000`.
 
 ---
 
@@ -122,9 +155,9 @@ The app will be running at `http://localhost:3000`.
 
 ### `POST /api/farm/analyze`
 
-Accepts a multipart form and forwards it to WeatherAI.
+Accepts a `multipart/form-data` payload and proxies it to the WeatherAI Trees API.
 
-**Form fields:**
+**Request fields:**
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -165,73 +198,78 @@ Accepts a multipart form and forwards it to WeatherAI.
 }
 ```
 
+---
+
 ### `GET /api/farm/health`
 
-Returns the service status and confirms the WeatherAI API key is configured.
+Returns backend status and confirms the WeatherAI API key is configured.
+
+```json
+{ "status": "ok", "apiKeyConfigured": true }
+```
 
 ---
 
 ## Frontend API Module
 
-All API calls are made through `src/API/farmApi.ts`:
+All backend calls are made through a single typed wrapper — `src/API/farmApi.ts`:
 
 ```ts
 import analyseFarm from './API/farmApi';
 
-const data = await analyseFarm(image, location, county, acres);
+const result = await analyseFarm(imageFile, location, county, acres);
 ```
 
-The `BASE_URL` is read from the `VITE_API_URL` environment variable, falling back to `http://localhost:5000/api` in development.
+`BASE_URL` is read from `VITE_API_URL` and falls back to `http://localhost:5000/api` in development.
 
 ---
 
-## How Analysis Results Are Handled
+## How Results Are Handled
 
-- **Successful analysis** — displays stats grid, health bar, observations, and recommendations.
-- **Low confidence / failed analysis** — when the API returns `low_confidence: true` and `total_tree_count: 0`, the app shows a clear error message asking the user to retry with a better photo, rather than displaying misleading zeros or null values.
+FarmGuard AI treats data integrity seriously:
 
-This matters for farmers making real decisions — fake or empty data is never shown as if it were real.
+- **Successful analysis** → displays the full stats grid, health bar, species guess, observations, and recommendations.
+- **Low-confidence result** → when the API returns `low_confidence: true` with a zero tree count (typically caused by poor image quality), the app surfaces a clear, actionable message asking the user to retry with a better photo. Zero values are **never** presented as real data.
 
----
-
-## Known Limitations
-
-- Analysis quality depends heavily on image quality. Overhead/aerial photos produce the best results.
-- The WeatherAI API requires a configured Gemini API key on their server for full AI analysis. If their Gemini key is missing, the API returns nulls with `low_confidence: true` — this is a WeatherAI server-side issue, not a bug in this app.
-- Maximum supported image size is 10 MB by default (configurable via `MAX_FILE_SIZE_MB`).
+This matters. Farmers make real planting, thinning, and investment decisions based on this data.
 
 ---
 
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | React 18, TypeScript, Vite |
-| Styling | Plain CSS (no framework) |
-| Backend | Node.js, Express |
-| HTTP client | Axios (backend → WeatherAI) |
-| AI / CV | WeatherAI Trees & Forestry API |
-| Image upload | Multer |
-
----
-
-## Environment Variables Summary
+## Environment Variables
 
 ### Backend (`backend/.env`)
 
 | Variable | Required | Default | Description |
 |---|---|---|---|
 | `WEATHER_AI_API_KEY` | ✅ | — | Your WeatherAI API key |
-| `WEATHER_AI_BASE_URL` | ❌ | `https://weather-ai.co` | WeatherAI base URL |
-| `WEATHER_AI_TREES_ENDPOINT` | ❌ | `/trees/analyze` | Trees API endpoint |
+| `WEATHER_AI_BASE_URL` | ❌ | `https://api.weather-ai.co` | WeatherAI base URL |
+| `WEATHER_AI_TREES_ENDPOINT` | ❌ | `/v1/trees/analyze` | Trees endpoint path |
 | `PORT` | ❌ | `5000` | Server port |
-| `ALLOWED_ORIGINS` | ❌ | `http://localhost:3000` | CORS origins |
-| `MAX_FILE_SIZE_MB` | ❌ | `10` | Max upload size |
+| `ALLOWED_ORIGINS` | ❌ | `http://localhost:3000` | CORS allowed origins |
+| `MAX_FILE_SIZE_MB` | ❌ | `10` | Max upload size in MB |
+| `ALLOWED_MIME_TYPES` | ❌ | `image/jpeg,image/png,...` | Accepted file types |
 
 ### Frontend (`frontend/.env`)
 
 | Variable | Required | Default | Description |
 |---|---|---|---|
-| `VITE_API_URL` | ❌ | `http://localhost:5000/api` | Backend API base URL |
+| `VITE_API_URL` | ❌ | `http://localhost:5000/api` | Backend base URL |
 
+---
 
+## Image Quality Tips
+
+For best analysis results:
+
+- Use **overhead or near-overhead** drone/aerial photos
+- Ensure **good lighting** — avoid heavy shadows or overexposed images
+- Keep images **under 10 MB** (configurable via `MAX_FILE_SIZE_MB`)
+- Higher resolution = better tree crown detection
+
+> **Note:** Analysis accuracy is determined by the WeatherAI API's computer vision engine. If the API returns low-confidence results, it typically indicates image quality rather than an application bug.
+
+---
+
+## License
+
+MIT — see [LICENSE](./LICENSE) for details.
