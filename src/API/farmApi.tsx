@@ -1,5 +1,4 @@
 const BASE_URL = import.meta.env.VITE_API_URL ?? "";
-console.log("API Base URL:", BASE_URL);
 
 export default async function analyseFarm(
   image: File,
