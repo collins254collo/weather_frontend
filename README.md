@@ -21,10 +21,10 @@ FarmGuard AI connects a React frontend to a Node.js backend, which forwards farm
 ## Screenshots
 
 ### Upload Form
-![FarmGuard AI upload form showing photo picker, location, county and farm size fields](./screenshot-form.png)
+![FarmGuard AI upload form showing photo picker, location, county and farm size fields](."C:\Users\Administrator\Pictures\Screenshots\Screenshot 2026-06-05 092915.png")
 
 ### Analysis Results
-![FarmGuard AI results screen showing farm stats, low confidence warning, and tree health breakdown](./screenshot-results.png)
+![FarmGuard AI results screen showing farm stats, low confidence warning, and tree health breakdown](."C:\Users\Administrator\Pictures\Screenshots\Screenshot 2026-06-05 092915.png")
 
 ---
 
