@@ -74,7 +74,7 @@ farmguard-ai/
     ├── utils/
     │   └── weatherAiClient.js # Axios instance — WeatherAI integration
     ├── routes/
-    │   └── farm.js            # Route definitions
+    │   └── farmRoutes.js            # Route definitions
     ├── .env                   # API keys & server config
     └── server.js              # Express app entry point
 ```
