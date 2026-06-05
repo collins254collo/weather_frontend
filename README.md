@@ -16,7 +16,7 @@ FarmGuard AI lets farmers and agronomists drop a drone or aerial photo of their 
 
 No spreadsheets. No guesswork. Upload → Analyse → Act.
 
-Built on top of the [WeatherAI Trees & Forestry API](https://weather-ai.co), which combines OpenCV computer vision with Gemini AI to deliver accurate, context-aware results.
+Built on top of the [Weather-AI Trees & Forestry API](https://weather-ai.co), which combines OpenCV computer vision with Gemini AI to deliver accurate, context-aware results.
 
 ---
 
@@ -86,14 +86,14 @@ farmguard-ai/
 ### Prerequisites
 
 - **Node.js 18+**
-- A **WeatherAI API key** — get one free at [weather-ai.co](https://weather-ai.co)
+- A **Weather-AI API key** — get one free at [weather-ai.co](https://weather-ai.co)
 
 ---
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/farmguard-ai.git
+git clone https://github.com/collins254collo/farmguard-ai.git
 cd farmguard-ai
 ```
 
