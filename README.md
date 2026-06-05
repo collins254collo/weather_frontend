@@ -32,7 +32,7 @@ Built on top of the [Weather-AI Trees & Forestry API](https://weather-ai.co), wh
 
 - **Drag-and-drop image upload** — JPEG, PNG, WebP supported, up to 10 MB
 - **Detailed farm report** — tree count, canopy %, trees/acre, health status per tree
-- **AI observations & recommendations** — powered by Gemini via WeatherAI
+- **AI observations & recommendations** — powered by Gemini via Weather-AI
 - **Low-confidence detection** — warns users when image quality is insufficient rather than showing misleading data
 - **Metadata support** — pass county, location, farm size, and GPS coordinates for richer AI context
 - **Clean, responsive UI** — works on desktop and mobile
