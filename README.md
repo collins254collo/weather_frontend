@@ -18,6 +18,16 @@ FarmGuard AI connects a React frontend to a Node.js backend, which forwards farm
 
 ---
 
+## Screenshots
+
+### Upload Form
+![FarmGuard AI upload form showing photo picker, location, county and farm size fields](./src/assets/upload.png)
+
+### Analysis Results
+![FarmGuard AI results screen showing farm stats, low confidence warning, and tree health breakdown](./src/assets/analysis.png)
+
+---
+
 ## Project Structure
 
 ```
@@ -25,7 +35,7 @@ farmguard-ai/
 ├── frontend/                  # React + TypeScript + Vite
 │   ├── src/
 │   │   ├── API/
-│   │   │   └── farmApi.tsx     # API call to backend
+│   │   │   └── farmApi.ts     # API call to backend
 │   │   ├── App.tsx            # Main app component
 │   │   ├── app.css            # All styles
 │   │   └── main.tsx
