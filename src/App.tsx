@@ -289,8 +289,7 @@ function AnalysisResults({
         </>
       )}
 
-      {/* Reference ID */}
-      <p className="ref-id">Reference ID: {d.analysis_id}</p>
+
     </div>
   );
 }
