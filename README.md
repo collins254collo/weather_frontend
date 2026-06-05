@@ -6,7 +6,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)
 ![Express](https://img.shields.io/badge/Express-4-000000?style=flat-square&logo=express)
-![Powered by WeatherAI](https://img.shields.io/badge/Powered%20by-WeatherAI-22c55e?style=flat-square)
+![Powered by Weather-AI](https://img.shields.io/badge/Powered%20by-WeatherAI-22c55e?style=flat-square)
 
 ---
 
